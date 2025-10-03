@@ -72,6 +72,4 @@ Below is the static HTML page served from the AMI:
 
 ![alt text](image.png)
 
-*(Replace with your own screenshot of the HTML page running in a browser.)*
-
 

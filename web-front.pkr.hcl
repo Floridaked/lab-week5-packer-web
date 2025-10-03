@@ -30,26 +30,50 @@ build {
   name = "web-nginx"
   sources = [
     # COMPLETE ME Use the source defined above
+    "source.amazon-ebs.debian"
   ]
   
   # https://developer.hashicorp.com/packer/docs/templates/hcl_templates/blocks/build/provisioner
   provisioner "shell" {
     inline = [
       "echo creating directories",
+      "sudo mkdir -p /web/html",
+      "sudo chmod 755 /web",
+      "sudo chmod 755 /web/html" 
       # COMPLETE ME add inline scripts to create necessary directories and change directory ownership.
       # See nginx.conf file for root directory where files will be served.
       # Files need appropriate ownership for default user
+      
     ]
   }
 
   provisioner "file" {
     # COMPLETE ME add the HTML file to your image
+    source = "files/index.html"
+    destination = "/tmp/index.html"
   }
 
   provisioner "file" {
     # COMPLETE ME add the nginx.conf file to your image
+    source = "files/nginx.conf"
+    destination = "/tmp/nginx.conf"
   }
 
   # COMPLETE ME add additional provisioners to run shell scripts and complete any other tasks
+  provisioner "shell" {
+    inline = [
+      "echo installing nginx",
+      "sudo apt-get update -y",
+      "sudo apt-get install -y nginx",
+      "echo moving config into place",
+      "sudo mv /tmp/nginx.conf /etc/nginx/sites-available/default",
+      "sudo mkdir -p /web/html",
+      "sudo mv /tmp/index.html /web/html/index.html",
+      "sudo chown -R www-data:www-data /web/html",
+      "sudo systemctl enable nginx",
+      "sudo systemctl restart nginx",
+      "echo packer provisioning complete"
+    ]
+  }
 }
 

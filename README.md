@@ -2,9 +2,6 @@
 
 Starter files for the week 5 lab, intro to Packer.
 See lab instructions on D2L for details.
-
-Here’s a **sample README.md** you can drop into your repo. You just need to replace `<public-ip>` with your instance’s actual public IP and add your own screenshot.
-
 ````markdown
 # Packer Web Front Lab
 
@@ -27,7 +24,7 @@ It uses **HashiCorp Packer** with the `amazon-ebs` builder.
 
 1. Clone this repository:
    ```bash
-   git clone <your-repo-url>
+   git clone <repo url>
    cd wk5-packer-intro-lab-start
 ````
 
@@ -64,7 +61,7 @@ It uses **HashiCorp Packer** with the `amazon-ebs` builder.
 4. Visit in browser:
 
    ```
-   http://http://ec2-54-245-65-221.us-west-2.compute.amazonaws.com/
+   http://IP
    ```
 
 ---
